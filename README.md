@@ -1,6 +1,30 @@
 # Introduction 
 TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
 
+## Design
+
+User --> Static Hosted Website on Azure - no charge - (Chat App)
+--> First default message is displayed - No API call
+--> User interacts with the Chat App
+--> API Call to Lambda -- FastAPI Code - wraps langchain agents for GPT
+
+## Pipeline
+
+### Serverless stage
+Stage 0: Tests - Unit/Integration (Mocking)
+    tests/faas_demo
+        - test_chat_response
+Stage 1: Build a Azure Function docker container
+Stage 2: Push docker container to registry (It will automatically update the Lambda)
+Stage 4: Deploy - Cloud Stack - OPENAPI_KEY, env etc. 
+Stage 5: E2E test running - python script
+
+### Frontend stage
+Stage 4: Test UI
+Stage 5: Build UI - Webpack compiles your code into -> HTML, CSS, JS
+Stage 6: Push to Azure Static website hosting
+Stage 7: E2E - Selenium test
+
 # Getting Started
 TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
 1.	Installation process
