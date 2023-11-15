@@ -17,10 +17,6 @@ class UserInDBBase(UserBase):
         orm_mode = True
 
 
-class UserInDB(UserInDBBase):
-    hashed_password: str
-
-
 class TokenData(BaseModel):
     username: Optional[str] = None
 

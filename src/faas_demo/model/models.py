@@ -1,5 +1,4 @@
 from sqlalchemy import Column
-from sqlalchemy import Enum as SQLEnum
 from sqlalchemy import Integer, String
 
 from model.db import Base
@@ -10,4 +9,4 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=True, index=True)
-    hashed_password = Column(String)
+    hashed_password = Column(String) #storing non human readable version for security

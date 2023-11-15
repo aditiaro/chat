@@ -20,15 +20,13 @@ load_dotenv(find_dotenv())
 
 router = APIRouter()
 
-
+#endpoint 1
 @router.post("/register/", response_model=schemas.UserInDBBase)
 async def register(user_in: schemas.UserIn, db: Session = Depends(get_db)):
     db_user = auth.get_user(db, username=user_in.username)
     if db_user:
         raise HTTPException(status_code=400, detail="Username already registered")
     db_user = db.query(models.User).filter(models.User.email == user_in.email).first()
-    if db_user:
-        raise HTTPException(status_code=400, detail="Email already registered")
 
     hashed_password = security.get_password_hash(user_in.password)
     db_user = models.User(
@@ -39,10 +37,10 @@ async def register(user_in: schemas.UserIn, db: Session = Depends(get_db)):
     db.refresh(db_user)
     return db_user
 
-
+#endpoint 2
 @router.post("/token", response_model=schemas.Token)
 async def login_for_access_token(
-    form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)
+    form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db) #to extract data from form
 ):
     user = auth.get_user(db, username=form_data.username)
     if not user or not security.pwd_context.verify(
@@ -59,13 +57,17 @@ async def login_for_access_token(
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
-
+#endpoint 3
 @router.post("/conversation/")
 async def read_conversation(
     query: str,
     current_user: schemas.UserInDB = Depends(auth.get_current_user),
     db: Session = Depends(get_db),
 ):
+ #   return {
+ #       "conversation":"Secure conversation",
+ #      "current_user" : current_user.username,
+#  }
     db_user = db.query(User).get(current_user.id)
     if not db_user:
         raise HTTPException(status_code=404, detail="User not found")
