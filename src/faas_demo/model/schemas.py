@@ -14,7 +14,11 @@ class UserInDBBase(UserBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
+
+
+class UserInDB(UserInDBBase):
+    hashed_password: str
 
 
 class TokenData(BaseModel):
