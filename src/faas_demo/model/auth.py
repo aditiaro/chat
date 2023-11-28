@@ -10,10 +10,10 @@ from model.database import get_db
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 #extractin user from JWT
-'''
+
 def get_user(database: Session, username: str):
     return database.query(models.User).filter(models.User.username == username).first()
-'''
+
 
 async def get_current_user(
     token: str = Depends(oauth2_scheme), database: Session = Depends(get_db)
@@ -33,9 +33,9 @@ async def get_current_user(
         token_data = schemas.TokenData(username=username) #new token data instance
     except JWTError:
         raise credentials_exception
-    '''
+    
     user = get_user(database, username=token_data.username)
     if user is None:
         raise credentials_exception
     return user
-    '''
+    
