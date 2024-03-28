@@ -91,7 +91,7 @@ async def read_conversation(
     # engine="",
     # model_name="", 
     # )
-    llm = AzureChatOpenAI(model_name='gpt-35-turbo-16k', deployment_name='gpt35turbo16kdep2', openai_api_version="2023-07-01-preview", openai_api_base='https://openaitrials.openai.azure.com/', openai_api_type="azure", openai_api_key='f7e330db85eb4ca5855620ca2656871e')
+    llm = AzureChatOpenAI(model_name='gpt-35-turbo-16k', deployment_name='gpt35turbo16kdep2', openai_api_version="2023-07-01-preview", openai_api_base='https://openaitrials.openai.azure.com/', openai_api_type="azure", openai_api_key='')
 
     prompt = PromptTemplate(
         input_variables=["context", "question"], template=qa_template
