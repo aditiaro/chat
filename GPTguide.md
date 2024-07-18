@@ -1,5 +1,3 @@
-Certainly! To create a simple FastAPI chat app with a REST API using React Chat Elements (based on TypeScript), and ensure that FastAPI serves the React code statically, you can use the following example. I'll also provide instructions on setting up a basic GitHub Actions workflow for building and deploying the app.
-
 ### Backend (FastAPI - Python)
 
 1. Install the necessary libraries:
